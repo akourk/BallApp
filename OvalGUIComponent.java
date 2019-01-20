@@ -40,8 +40,10 @@ public class OvalGUIComponent implements Runnable {
 
             // if the ball is about to go off the screen in the negative x or y
             // direction, set both x and y vel to a random positive number
-            if (x <= 0 || y <= 0) {
+            if (x <= 0) {
                 this.xv = ((Math.random() * 10)%3)+1;
+            }
+            if (y <= 0) {
                 this.yv = ((Math.random() * 10)%3)+1;
             }
 
@@ -50,13 +52,11 @@ public class OvalGUIComponent implements Runnable {
             // the x velocity.
             if (x >= 780) {
                 this.xv = ((Math.random() * 10)%3)+1;
-                this.yv = ((Math.random() * 10)%3)+1;
                 this.xv = this.xv * (-1);
             }
 
             // same for the y velocity
             if (y >= 780) {
-                this.xv = ((Math.random() * 10)%3)+1;
                 this.yv = ((Math.random() * 10)%3)+1;
                 this.yv = this.yv * (-1);
             }
