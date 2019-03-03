@@ -12,13 +12,14 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 
-public class SampleApp {
+public class BouncingBallApp {
 
     private JFrame frame = new JFrame();
-    private static SquarePanel panel = new SquarePanel();
+    private static BouncingBallPanel panel = new BouncingBallPanel();
 
-    public SampleApp() {
+    public BouncingBallApp() {
 
         // make a frame of size 800px by 800px
         frame.setSize(800, 800);
@@ -31,7 +32,7 @@ public class SampleApp {
             // passes x and y coords of mouseclick
             @Override
             public void mouseClicked(MouseEvent e) {
-                Thread ball = new Thread(new OvalGUIComponent(e.getX(), e.getY(), panel));
+                Thread ball = new Thread(new BallRunnable(e.getX(), e.getY(), panel));
                 ball.start();
             }
             @Override
@@ -42,6 +43,19 @@ public class SampleApp {
             public void mouseEntered(MouseEvent e) {}
             @Override
             public void mouseExited(MouseEvent e) {}
+        });
+        panel.addMouseMotionListener(new MouseMotionListener(){
+
+            @Override
+            public void mouseDragged(MouseEvent e) {
+                Thread ball = new Thread(new BallRunnable(e.getX(), e.getY(), panel));
+                ball.start();
+            }
+
+            @Override
+            public void mouseMoved(MouseEvent e) {
+
+            }
         });
 
         // a black background looks nice
@@ -58,7 +72,7 @@ public class SampleApp {
 
     public static void main(String[] args) {
 
-        SampleApp app = new SampleApp();
+        BouncingBallApp app = new BouncingBallApp();
 
         while(true) {
             panel.repaint();

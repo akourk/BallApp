@@ -10,14 +10,14 @@
 import java.awt.*;
 
 // implements Runnable for extra threads
-public class OvalGUIComponent implements Runnable {
+public class BallRunnable implements Runnable {
     private int x, y;   // current x and y position of the ball
     private double xv = ((Math.random() * 10)%3)+1; // randomizing the x velocity a little
     private double yv = ((Math.random() * 10)%3)+1; // and the y velocity...
-    private SquarePanel panel;
+    private BouncingBallPanel panel;
     private Color color = new Color((int) (Math.random() * 0x1000000)); // wizardy to randomize the color
 
-    OvalGUIComponent(int x, int y, SquarePanel panel) {
+    BallRunnable(int x, int y, BouncingBallPanel panel) {
         this.x = x;
         this.y = y;
         this.panel = panel;
@@ -68,7 +68,7 @@ public class OvalGUIComponent implements Runnable {
             try {
                 // this is to offer smoothing for fast threads
                 // can be increased with fast computers, decreased with slower computers
-                Thread.sleep(5);
+                Thread.sleep(40);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

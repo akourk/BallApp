@@ -12,12 +12,12 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class SquarePanel extends JPanel {
+public class BouncingBallPanel extends JPanel {
 
     // keeping an ArrayList of balls (ovals)
-    private ArrayList<OvalGUIComponent> ovals = new ArrayList<>();
+    private ArrayList<BallRunnable> ovals = new ArrayList<>();
 
-    public void setOvals(OvalGUIComponent oval) {
+    public void setOvals(BallRunnable oval) {
         ovals.add(oval);
     }
 
